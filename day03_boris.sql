@@ -77,18 +77,31 @@ where YEAR(salaries.to_date) > '2019%' group by first_name
 
 --B-B-B-BONUS EXAMPLE 
 select * from dept_manager 
-inner join departments on departments.dept_no = dept_manager.dept_no 
-inner join salaries on salaries.emp_no = dept_manager.emp_no
-inner join titles on titles.emp_no = dept_manager.emp_no 
-inner join employees on employees.emp_no = dept_manager.emp_no 
-inner join dept_emp on dept_emp.emp_no = dept_manager.emp_no
-group by first_name
+right join departments on departments.dept_no = dept_manager.dept_no 
+right join salaries on salaries.emp_no = dept_manager.emp_no
+right join titles on titles.emp_no = dept_manager.emp_no 
+right join employees on employees.emp_no = dept_manager.emp_no 
+right join dept_emp on dept_emp.emp_no = dept_manager.emp_no
+UNION
+select * from dept_manager
+left join departments on departments.dept_no = dept_manager.dept_no 
+left join salaries on salaries.emp_no = dept_manager.emp_no
+left join titles on titles.emp_no = dept_manager.emp_no 
+left join employees on employees.emp_no = dept_manager.emp_no 
+left join dept_emp on dept_emp.emp_no = dept_manager.emp_no
 --B-B-B-BONUS EXAMPLE
 
 
 
 
 
+select employees.first_name, employees.last_name  
+from employees 
+where (select max(salaries.salary) from salaries where salaries.salary > 70000)
+group by first_name
 
-
-
+right join departments on departments.dept_no = dept_manager.dept_no 
+right join salaries on salaries.emp_no = dept_manager.emp_no
+right join titles on titles.emp_no = dept_manager.emp_no 
+right join employees on employees.emp_no = dept_manager.emp_no 
+right join dept_emp on dept_emp.emp_no = dept_manager.emp_no
