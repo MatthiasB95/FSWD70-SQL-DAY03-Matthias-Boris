@@ -134,7 +134,14 @@ right JOIN salaries ON salaries.emp_no = dept_manager.emp_no
 right JOIN dept_emp ON dept_emp.emp_no = dept_manager.emp_no
 
 /* next step */
-
+	 /* subquery */
+	 	SELECT employees.first_name, employees.last_name, employees.emp_no
+		FROM employees
+		WHERE employees.emp_no IN (
+		    SELECT salaries.emp_no
+		    FROM salaries
+		    WHERE salaries.salary > 70000
+		)
 
 
 
