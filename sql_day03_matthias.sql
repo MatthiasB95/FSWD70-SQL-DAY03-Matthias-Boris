@@ -94,6 +94,46 @@
 
 
 /* bonus query */
+	SELECT *
+FROM dept_manager
+INNER JOIN titles ON titles.emp_no = dept_manager.emp_no
+INNER JOIN employees ON employees.emp_no = dept_manager.emp_no
+INNER JOIN departments ON departments.dept_no = dept_manager.dept_no
+INNER JOIN salaries ON salaries.emp_no = dept_manager.emp_no
+INNER JOIN dept_emp ON dept_emp.emp_no = dept_manager.emp_no
+GROUP BY first_name
+
+
+
+
+SELECT *
+FROM employees
+INNER JOIN titles ON titles.emp_no = employees.emp_no
+INNER JOIN dept_manager ON dept_manager.emp_no = employees.emp_no
+INNER JOIN departments ON departments.dept_no = dept_manager.dept_no
+INNER JOIN salaries ON salaries.emp_no = employees.emp_no
+INNER JOIN dept_emp ON dept_emp.emp_no = employees.emp_no
+GROUP BY first_name
+
+
+
+SELECT *
+FROM dept_manager
+left JOIN titles ON titles.emp_no = dept_manager.emp_no
+left JOIN employees ON employees.emp_no = dept_manager.emp_no
+left JOIN departments ON departments.dept_no = dept_manager.dept_no
+left JOIN salaries ON salaries.emp_no = dept_manager.emp_no
+left JOIN dept_emp ON dept_emp.emp_no = dept_manager.emp_no
+UNION
+    SELECT *
+FROM dept_manager
+right JOIN titles ON titles.emp_no = dept_manager.emp_no
+right JOIN employees ON employees.emp_no = dept_manager.emp_no
+right JOIN departments ON departments.dept_no = dept_manager.dept_no
+right JOIN salaries ON salaries.emp_no = dept_manager.emp_no
+right JOIN dept_emp ON dept_emp.emp_no = dept_manager.emp_no
+
+/* next step */
 
 
 
